@@ -37,12 +37,9 @@ public class SignalReader {
             }
         } else {
             // Handle other methods by reading the request body
-            StringBuilder requestBody = new StringBuilder();
+            StringWriter requestBody = new StringWriter();
             try (BufferedReader reader = requestAdapter.getReader()) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    requestBody.append(line);
-                }
+                reader.transferTo(requestBody);
             }
 
             data = requestBody.toString();

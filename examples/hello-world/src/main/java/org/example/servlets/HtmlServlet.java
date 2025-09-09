@@ -23,10 +23,7 @@ public class HtmlServlet extends HttpServlet {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
              PrintWriter writer = resp.getWriter()) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                writer.println(line);
-            }
+            reader.transferTo(writer);
         }
     }
 }
